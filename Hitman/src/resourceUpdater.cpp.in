@@ -1,0 +1,46 @@
+#include <fstream>
+#include <vector>
+#include <cstdint>
+#include <string>
+using namespace std;
+
+vector<uint8_t> hexToBin(const string raw);
+string binToStr(const vector<uint8_t> &vect, string name);
+
+int main(){
+    vector<uint8_t> image1 = hexToBin("@IMG1@");
+    vector<uint8_t> image2 = hexToBin("@IMG2@");
+    vector<uint8_t> arial = hexToBin("@FNT1@");
+    vector<uint8_t> hitmanDB = hexToBin("@DTB1@");
+
+    fstream resource;
+    resource.open("resource.h",ios::out);
+
+    resource << "#ifndef RESOURCE_H\n#define RESOURCE_H\n\n#include<vector>\n#include<cstdint>\nusing namespace std;\n\nnamespace resources {\n\n";
+    resource << binToStr(image1,"image1") << endl;
+    resource << binToStr(image2,"image2") << endl;
+    resource << binToStr(arial,"arial") << endl;
+    resource << binToStr(hitmanDB,"hitmanDB") << endl;
+    resource << "}\n";
+    resource << "\n#endif";
+
+    return 0;
+}
+
+vector<uint8_t> hexToBin(const string raw){
+    vector<uint8_t> binary;
+    for(int i = 0; raw[i] != '\0' && raw[i + 1] != '\0'; i += 2){
+        binary.push_back(static_cast<uint8_t>(stoi(raw.substr(i,2),nullptr,16)));
+    }
+    return binary;
+}
+
+string binToStr(const vector<uint8_t> &vect, string name){
+    string ret = "\tinline const vector<uint8_t> " + name + " = {";
+    for(int i = 0; i < vect.size(); i ++){
+        ret += to_string(vect[i]);
+        if (i != vect.size() - 1) ret += ",";
+    }
+    ret += "};";
+    return ret;
+}

@@ -1,0 +1,111 @@
+i am building a c++ program with cmake which uses sqlite to access a read only database. here is my cmakelists file:
+
+cmake_minimum_required(VERSION 3.16)
+project(Hitman)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_C_STANDARD 17)
+
+# Optionally force a compiler (not required if selected in GUI)
+# set(CMAKE_CXX_COMPILER "C:/msys64/ucrt64/bin/g++.exe")
+
+# Stuff for initializing resources
+file(READ ${CMAKE_SOURCE_DIR}/resources/image1.png IMG1 HEX)
+file(READ ${CMAKE_SOURCE_DIR}/resources/image2.png IMG2 HEX)
+file(READ ${CMAKE_SOURCE_DIR}/resources/arial.ttf FNT1 HEX)
+file(READ ${CMAKE_SOURCE_DIR}/resources/hitman.db DTB1 HEX)
+configure_file(${CMAKE_SOURCE_DIR}/src/resource.h.in ${CMAKE_SOURCE_DIR}/src/resource.h @ONLY)
+
+# SFML install path
+set(SFML_DIR "C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib/cmake/SFML")
+set(SFML_ROOT "C:/Users/Owner/Documents/C++_Libraries/SFML-install")
+
+include_directories("${SFML_ROOT}/include")
+link_directories("${SFML_ROOT}/lib")
+
+add_executable(Hitman
+    src/main.cpp
+    src/sqlite3.c
+)
+
+set_target_properties(Hitman PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}")
+
+# TGUI FetchContent
+include(FetchContent)
+
+set(TGUI_SHARED_LIBS OFF)
+set(TGUI_BACKEND SFML_GRAPHICS)
+set(TGUI_OPT_ALL_WIDGETS ON)
+
+# Fetch TGUI
+FetchContent_Declare(
+    TGUI
+    GIT_REPOSITORY https://github.com/texus/TGUI.git
+    GIT_TAG v1.10.0
+)
+
+FetchContent_MakeAvailable(TGUI)
+
+# Point to static SFML libs and dependencies
+link_directories("C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib")
+
+# Required for static SFML + TGUI
+target_compile_definitions(Hitman PRIVATE SFML_STATIC TGUI_STATIC)
+
+target_link_options(Hitman PRIVATE -mwindows)
+
+# Link TGUI and SFML + dependencies
+target_link_libraries(Hitman
+    tgui
+    sfml-graphics-s
+    sfml-window-s
+    sfml-system-s
+    opengl32
+    winmm
+    gdi32
+    freetype
+    #flac
+    "C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib/libFLAC.a"
+    vorbis
+    vorbisfile
+    ogg
+)
+
+and here is resource.h.in:
+
+#ifndef RESOURCE_H
+#define RESOURCE_H
+
+#include <vector>
+#include <cstdint>
+#include <string>
+using namespace std;
+
+vector<uint8_t> hexToBin(const string raw){
+    vector<uint8_t> binary;
+    for(int i = 0; raw[i] != '\0' && raw[i + 1] != '\0'; i += 2){
+        binary.push_back(static_cast<uint8_t>(stoi(raw.substr(i,2),nullptr,16)));
+    }
+    return binary;
+}
+
+namespace resources {
+    static const string image1_raw = "@IMG1@";
+    inline const vector<uint8_t> image1 = hexToBin(image1_raw);
+
+    static const string image2_raw = "@IMG2@";
+    inline const vector<uint8_t> image2 = hexToBin(image2_raw);
+
+    static const string arial_raw = "@FNT1@";
+    inline const vector<uint8_t> arial = hexToBin(arial_raw);
+
+    static const string hitmanDB_raw = "@DTB1@";
+    inline const vector<uint8_t> hitmanDB = hexToBin(hitmanDB_raw);
+}
+
+#endif // RESOURCE_H
+
+the hex data is loaded in as an uninterrupted string (no spaces or commas).
+
+i want to load the database directly into the executable so that i don't have to distribute the file alongside my program. my understanding is that sqlite deserialize function can help to accomplish this. please explain how.
