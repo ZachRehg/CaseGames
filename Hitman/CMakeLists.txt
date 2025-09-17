@@ -83,7 +83,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(TGUI)
 
 # Point to static SFML libs and dependencies
-link_directories("C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib")
+#link_directories("C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib")
 
 # Required for static SFML + TGUI
 target_compile_definitions(Hitman PRIVATE SFML_STATIC TGUI_STATIC)
@@ -99,11 +99,15 @@ target_link_libraries(Hitman
     opengl32
     winmm
     gdi32
-    freetype
+    #freetype
+    "C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib/libfreetype.a"
     #flac
     "C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib/libFLAC.a"
-    vorbis
-    vorbisfile
-    ogg
+    #vorbis
+    "C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib/libvorbis.a"
+    #vorbisfile
+    "C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib/libvorbisfile.a"
+    #ogg
+    "C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib/libogg.a"
     "${WINPTHREAD_PATH}"
 )
