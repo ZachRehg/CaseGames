@@ -10,8 +10,8 @@ set(CMAKE_C_STANDARD 17)
 #set(CMAKE_CXX_COMPILER "C:/mingw64/bin/g++.exe")
 
 # Enable static linking of implicit libraries (standard C++ and GCC runtime)
-add_compile_options(-static-libstdc++ -static-libgcc -pthread)
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libstdc++ -static-libgcc -pthread")
+add_compile_options(-static-libstdc++ -static-libgcc)
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -static-libgcc -static-libstdc++")
 execute_process(
     COMMAND ${CMAKE_CXX_COMPILER} -print-file-name=libwinpthread.a
     OUTPUT_VARIABLE WINPTHREAD_PATH
@@ -80,10 +80,12 @@ FetchContent_Declare(
     GIT_TAG v1.10.0
 )
 
-FetchContent_MakeAvailable(TGUI)
+# Force static linking in TGUI
+set(TGUI_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -static-libstdc++ -static-libgcc")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -static-libstdc++ -static-libgcc")
 
-# Point to static SFML libs and dependencies
-#link_directories("C:/Users/Owner/Documents/C++_Libraries/SFML-install/lib")
+FetchContent_MakeAvailable(TGUI)
 
 # Required for static SFML + TGUI
 target_compile_definitions(Hitman PRIVATE SFML_STATIC TGUI_STATIC)
