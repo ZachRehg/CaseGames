@@ -12,6 +12,7 @@ set(CMAKE_C_STANDARD 17)
 # Enable static linking of implicit libraries (standard C++ and GCC runtime)
 add_compile_options(-static-libstdc++ -static-libgcc)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -static-libgcc -static-libstdc++")
+# Ensure libwinpthread.a is found even if moved to a different system or MinGW updated
 execute_process(
     COMMAND ${CMAKE_CXX_COMPILER} -print-file-name=libwinpthread.a
     OUTPUT_VARIABLE WINPTHREAD_PATH
@@ -83,7 +84,6 @@ FetchContent_Declare(
 # Force static linking in TGUI
 set(TGUI_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -static-libstdc++ -static-libgcc")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -static-libstdc++ -static-libgcc")
 
 FetchContent_MakeAvailable(TGUI)
 
