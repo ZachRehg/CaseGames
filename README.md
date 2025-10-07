@@ -14,7 +14,7 @@ Curently, the program includes the following studies:
 
 1. Installation
 2. Dependencies
-3. Other Notes
+3. Licenses
 
 ## 1. Installation
 
@@ -32,8 +32,29 @@ Note: All given version numbers are tested. Other versions not mentioned are unt
 ## 2. Dependencies
 
 - SFML version 3.0.0
+    - This project uses SFML for graphics and UI elements
+    - SFML internally uses the following libraries:
+        - freetype
+        - libjpeg
+        - stb_image
+        - OpenAL Soft (not used in this project) (NOTE: if this project is changed to include this dependency it must be PROPERLY LICENSED according to LGPL guidelines)
+        - libogg
+        - libvorbis
+        - libflac
+        - minimp3 (not used in this project)
 - TGUI version 1.10.0
+    - This project uses TGUI for interactive UI elements
 - SQLite version 3.50.4
+    - This project uses SQLite for basic data processing backend
 
-## 3. Other Notes
+## 3. Licenses
 
+- SFML: zlib/png license (https://www.sfml-dev.org/license/)
+- freetype: FTL license (https://freetype.org/license.html)
+- libjpeg: public domain
+- stb_image: public domain
+- libogg, libvorbis, libflac: BSD 3 license (https://opensource.org/license/bsd-3-clause)
+- TGUI: zlib license (https://opensource.org/license/Zlib)
+- SQLite: public domain (https://www.sqlite.org/copyright.html)
+
+Full license texts included with this distribution
