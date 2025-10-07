@@ -1,8 +1,4 @@
-sql stuff:
-
-    build the table and devise the procedure (that's basically it)
-
-building sfml and tgui from source:
+building sfml from source and setting up tgui:
 
     download cmake-gui (3.25.3, windows x86 64 msi) (https://cmake.org/files/v3.25/)
     download git (https://git-scm.com/downloads/win x64 setup "Git from the command line and also from 3rd-party software")
