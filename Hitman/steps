@@ -46,7 +46,8 @@ set up resource files:
     then reference existing code in tests
 
 next steps:
-    comment and ReadMe
-    determine how to load database with deserialize
     Edit text boxes to act more like text boxes (i.e. cursor change, selectable text)
     More sophisticated text replacement for output
+    Refactor to have cmake in CaseGames and move other things around
+    comment
+    determine how to load database with deserialize
