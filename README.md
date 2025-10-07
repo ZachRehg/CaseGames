@@ -7,7 +7,7 @@ Version: 0.1.0
 Date: 10/7/2025
 
 This program aims to simulate business school case studies in an interactive format for educational purposes.  
-Curently, the program includes the following studies:  
+Currently, the program includes the following studies:  
 - Hitman
 
 ## Table of Contents:
@@ -18,16 +18,23 @@ Curently, the program includes the following studies:
 
 ## 1. Installation
 
-Note: All given version numbers are tested. Other versions not mentioned are untested and my lead to unpredictable results.
+Note: All given version numbers are tested. Other versions not mentioned are untested and may lead to unpredictable results.
 
 1. Git Clone this repository
-2. Download CMake GUI verison 3.25.3
-3. Download and build SFML version 3.0.0 using CMake Gui
-    1. Create a path entry "CMAKE_INSTALL_PREFIX" and set its value to the intended install location
+2. Download CMake GUI version 3.25.3
+3. Download and build SFML version 3.0.0 using CMake GUI
+    1. Clone or download source repository
+    2. Set repository as source
+    3. Set intended build location as build
+    4. Create a path entry "CMAKE_INSTALL_PREFIX" and set its value to the intended install location
+    5. Configure and generate with the necessary makefile type and compilers depending on your toolchain
+    6. Build according to your toolchain
+    7. In CMakelists.txt, alter SFML_DIR and SFML_ROOT paths according to your setup
 4. Build project using CMake GUI
-    1. Set Hitman directory as source
-    2. Set Hitman/build directory as build
-    3. Build according to environment makefiles and toolchain
+    1. Set CaseGames/Hitman directory as source
+    2. Set CaseGames/Hitman/build directory as build
+    3. Configure and generate with the necessary makefile type and compilers depending on your toolchain
+    4. Build according to your toolchain
 
 ## 2. Dependencies
 
