@@ -26,6 +26,7 @@ building sfml from source and setting up tgui:
         (in console)
         mingw32-make
     now time to add TGUI, so make significant edits to the CMakeLists.txt file
+        NOTE: tgui is being built and retrieved through the cmake
     build again, repeat steps
 
 setting up sqlite:

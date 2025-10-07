@@ -13,10 +13,19 @@ Curently, the program includes the following studies:
 ## Table of Contents:
 
 1. Installation
+2. Dependencies
 
-## 1. To Install
+## 1. Installation
 
-1. Git Clone this directory
-2. Download CMake Gui verison 3.25.3 (other versions untested)
+Note: All given version numbers are tested. Other versions not mentioned are untested and my lead to unpredictable results.
+
+1. Git Clone this repository
+2. Download CMake GUI verison 3.25.3
 3. Download and build SFML version 3.0.0 using CMake Gui
     1. Create a path entry "CMAKE_INSTALL_PREFIX" and set its value to the intended install location
+4. Build project using CMake GUI
+    1. Set Hitman directory as source
+    2. Set Hitman/build directory as build
+    3. Build according to environment makefiles and toolchain
+
+## 2. Dependencies
