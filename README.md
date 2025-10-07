@@ -14,6 +14,7 @@ Curently, the program includes the following studies:
 
 1. Installation
 2. Dependencies
+3. Other Notes
 
 ## 1. Installation
 
@@ -29,3 +30,10 @@ Note: All given version numbers are tested. Other versions not mentioned are unt
     3. Build according to environment makefiles and toolchain
 
 ## 2. Dependencies
+
+- SFML version 3.0.0
+- TGUI version 1.10.0
+- SQLite version 3.50.4
+
+## 3. Other Notes
+
