@@ -1,5 +1,5 @@
 
 # Case Studies
 
-Author: Zachary Rehg
+Author: Zachary Rehg  
 Organization: Three Haverim
