@@ -1,13 +1,5 @@
-cmake_minimum_required(VERSION 3.16)
-project(Hitman)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_C_STANDARD 17)
-
-# Optionally force a compiler (not recommended if selected in GUI)
-#set(CMAKE_C_COMPILER "C:/mingw64/bin/gcc.exe")
-#set(CMAKE_CXX_COMPILER "C:/mingw64/bin/g++.exe")
+#cmake_minimum_required(VERSION 3.16)
+#project(Hitman)
 
 # Enable static linking of implicit libraries (standard C++ and GCC runtime)
 add_compile_options(-static-libstdc++ -static-libgcc)
